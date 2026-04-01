@@ -198,6 +198,18 @@ body {
   filter: brightness(1.02);
 }
 
+.task.completed {
+  opacity: 0.6;
+}
+
+.task.completed .task-text {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-text {
+  transition: all 0.3s ease;
+} 
 
 .empty-message {
   padding: 22px;

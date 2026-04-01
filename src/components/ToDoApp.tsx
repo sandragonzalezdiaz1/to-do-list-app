@@ -4,12 +4,17 @@ import './ToDoApp.css';
 
 export const ToDoApp = () => {
 
+    type TaskType = {
+        text: string,
+        completed: boolean
+    }
+    
     const [newTask, setNewTask] = useState<string>('');
-    const [tasksList, setTaskList] = useState<string[]>([]);
+    const [tasksList, setTaskList] = useState<TaskType[]>([]);
 
     const handleAddTask = () => {
         if(newTask.trim() == '') return; // Si el input esta vacio, salimos de la funcion
-        setTaskList(previewTasks => [...previewTasks, newTask]); // Agregamos la nueva tarea a la lista de tareas
+        setTaskList(previewTasks => [...previewTasks, {text: newTask, completed: false}]); // Agregamos la nueva tarea a la lista de tareas
         setNewTask(''); // Limpiamos el input
     }
 
@@ -18,6 +23,17 @@ export const ToDoApp = () => {
         setTaskList(tasks => tasks.filter((_, i) => i !== index)); 
 
     }
+
+    const handleToggleTask = (index: number) => {
+        setTaskList(tasks => 
+                tasks.map((task, indexTask) => 
+                    // Si el indice coincide, entonces cambiamos el estado de completada a no completada o viceversa,
+                    // en caso contrario, dejamos la tarea igual
+                    indexTask == index ? {...task, completed: !task.completed} : task 
+                )
+            ) 
+    }
+    
 
     return (
         <div className="to-do-app">
@@ -33,7 +49,7 @@ export const ToDoApp = () => {
                     />
                     <button className="add-btn" onClick={handleAddTask}>Add</button>
                 </div>
-                <TasksList tasksList={tasksList} deleteTask={handleDeleteTask}></TasksList>
+                <TasksList tasksList={tasksList} deleteTask={handleDeleteTask} toggleTask={handleToggleTask}></TasksList>
             </div>
         </div>
     )
