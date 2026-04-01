@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { TasksList } from "./TasksList";
 import './ToDoApp.css';
+import type { TaskType } from "../types/TaskType";
 
 export const ToDoApp = () => {
 
-    type TaskType = {
-        text: string,
-        completed: boolean
-    }
-    
     const [newTask, setNewTask] = useState<string>('');
     const [tasksList, setTaskList] = useState<TaskType[]>([]);
 

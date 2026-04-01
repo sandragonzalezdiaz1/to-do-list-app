@@ -1,7 +1,4 @@
-type TaskType = {
-  text: string;
-  completed: boolean;
-};
+import type { TaskType } from "../types/TaskType";
 
 // Definimos el tipo de las props que va a recibir el componente Task
 type PropsTask = {

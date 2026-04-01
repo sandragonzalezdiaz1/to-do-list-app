@@ -1,9 +1,5 @@
 import { Task } from "./Task"
-
-type TaskType = {
-    text:string,
-    completed: boolean
-}
+import type { TaskType } from "../types/TaskType";
 
 type PropsTasksList = {
   tasksList: TaskType[],
